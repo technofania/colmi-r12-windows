@@ -1,0 +1,18 @@
+venv/
+*.log
+*.csv
+__pycache__/
+*.pyc
+
+# TouchDesigner
+Backup/
+td/Backup/
+*.toe.dir/
+*.tox.dir/
+# projekty TD zapisywane przez uzytkownika w folderze paczki
+td/*.toe
+!td/RING_START.toe
+CrashAutoSave.*.toe
+TouchDesignerCrash.*.dmp
+TDImportCache/
+Log/

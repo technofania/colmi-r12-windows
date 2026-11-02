@@ -1,0 +1,4 @@
+# Biblioteki potrzebne do pracy z pierscieniem.
+# START.bat instaluje je automatycznie - nie trzeba nic robic recznie.
+bleak>=0.22
+python-osc>=1.8

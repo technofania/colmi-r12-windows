@@ -1,0 +1,37 @@
+﻿# ======================================================================
+#  USTAWIENIA - zwykly plik tekstowy, mozna otworzyc Notatnikiem.
+#  Format: nazwa = wartosc. Linie z # sa komentarzami.
+#  W 99% przypadkow NIE TRZEBA tu nic zmieniac.
+# ======================================================================
+
+# Adres MAC pierscienia. Puste = program sam go znajdzie po nazwie.
+# Wypelnij tylko wtedy, gdy w poblizu jest wiecej niz jeden pierscien.
+# Adres pokaze znajdz-pierscien.bat, np. AA:BB:CC:DD:EE:FF
+adres =
+
+# Fragment nazwy urzadzenia, po ktorym szukamy, gdy adres jest pusty.
+nazwa = R12
+
+# Gdzie wysylac dane. To samo trzeba wpisac w TouchDesignerze w OSC In CHOP.
+# 127.0.0.1 = ten sam komputer. Puste = nie wysylaj OSC (tylko podglad).
+osc = 127.0.0.1:9000
+
+# Jak dlugo program ma pracowac, w minutach.
+czas_minut = 60
+
+# Ile razy na sekunde dopytywac pierscien o nowa probke ruchu.
+# 10 to zmierzone optimum dla R12. Wyzej czujnik ZASTYGA, nie przyspiesza.
+# 0 = nie dopytuj (wtedy 1 probka na sekunde, ale bateria trzyma dluzej).
+poll_hz = 10
+
+# Skad brac puls:
+#   beats  - okienka na odstepy miedzy uderzeniami serca (zalecane)
+#   off    - wcale, tylko ruch i PPG (najmniej przerw w strumieniu ruchu)
+puls = beats
+
+# Co ile sekund robic okienko na puls (tylko gdy puls = beats).
+# W trakcie okienka strumien ruchu jest na chwile przerwany.
+puls_co_sekund = 90
+
+# Nazwa pliku CSV z zapisem wszystkiego. Puste = nie zapisuj.
+csv = dane_z_pierscienia.csv
