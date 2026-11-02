@@ -376,6 +376,27 @@ class RingLive:
                       rp.pkt_raw_enable() if on else rp.pkt_raw_disable())
         self.raw_on = on
 
+    async def _czysty_start(self, client, write_uuid):
+        """
+        Gasi to, co moglo zostac wlaczone w pierscieniu przez poprzedni
+        przebieg, i dopiero potem wlaczamy swoje.
+
+        Po co: komendy gaszace wychodza w bloku finally, czyli przy Ctrl+C
+        i przy normalnym koncu pomiaru. Nie wychodza, gdy proces zostanie
+        ubity - zamkniecie okna krzyzykiem, Zakoncz zadanie, zanik zasilania.
+        Wtedy pierscien zostaje z wlaczonym strumieniem albo z chodzacym
+        pomiarem, diody PPG swieca i bateria znika w oczach. Pierscien sam
+        tego nie przerwie, bo nie wie, ze po drugiej stronie nikogo nie ma.
+
+        Dwie i pol sekundy przy starcie za pierscien, ktory sam sie czysci.
+        Wysylamy tylko komendy wylaczajace, nic nowego.
+        """
+        await self._raw(client, write_uuid, False)
+        await asyncio.sleep(0.3)
+        for typ in (rp.RT_HEART_RATE, rp.RT_SPO2, rp.RT_HRV, rp.RT_STRESS):
+            await rp.send(client, write_uuid, rp.pkt_rt_stop(typ))
+            await asyncio.sleep(0.25)
+
     async def _poller(self, client, write_uuid, hz):
         """
         Odpytuje pierscien o surowa probke tak czesto, jak sie da.
@@ -518,6 +539,7 @@ class RingLive:
         async with BleakClient(dev) as client:
             print(f"\nPolaczono: {dev.name} {dev.address}")
             write_uuid = await rp.subscribe(client, self.handle)
+            await self._czysty_start(client, write_uuid)
             await rp.send(client, write_uuid, rp.packet(rp.CMD_BATTERY))
             await asyncio.sleep(0.4)
             await self._raw(client, write_uuid, True)

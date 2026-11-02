@@ -106,8 +106,24 @@ Kliknij `znajdz-pierscien.bat`. Pokaże, co Bluetooth widzi w pobliżu, razem
 z adresami MAC. Tylko nasłuchuje, do pierścienia nie leci ani jedna komenda.
 
 Przyczyny, w kolejności od najczęstszej: włączony QRing w telefonie, pierścień
-na ładowarce (wtedy często nie rozgłasza się wcale), pierścień uśpiony po
-dłuższym bezruchu, wyłączony Bluetooth.
+na ładowarce (nie rozgłasza się wtedy wcale, bo na czas ładowania wyłącza
+Bluetooth), pierścień uśpiony po dłuższym bezruchu, wyłączony Bluetooth.
+
+## Pierścień mruga i nie chce przestać
+
+Zdarzyło mi się, że pierścień mrugał bez przerwy na zielono i czerwono od
+spodu, choć nic nie było uruchomione, i nie dawał się znaleźć skanerem.
+Wyglądało to na zapomniany włączony strumień, ale nim nie było. Podłączyłem
+się i przez kwadrans bateria nie spadła ani o procent, a diody PPG świecące
+na stałe rozładowałyby ten pierścień w niecałe dwie godziny. Żadnego pomiaru
+tam nie było, zaciął się kontroler ładowania.
+
+Pomogło położenie pierścienia na ładowarce i porządne dosunięcie na magnes.
+Zielone zgasło, zostało równe czerwone, czyli normalne ładowanie, a po
+zdjęciu nie świeciło już nic. Jeśli trafisz na to samo, zacznij od przetarcia
+styków pierścienia i krążka, bo zaschnięty pot świetnie izoluje, a potem
+naładuj do pełna. Reset fabryczny nic tu nie da, bo to nie jest ustawienie
+w pamięci.
 
 ## Czego ten pierścień nie umie
 
